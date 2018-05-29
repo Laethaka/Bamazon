@@ -28,4 +28,5 @@ use bamazon;
 --     ('American Psycho', 'fiction', 3.82, 100),
 --     ('Titus Groan', 'fiction', 3.91, 95);
 
+delete from products where department_name="fictio";
 select * from products;

@@ -25,15 +25,15 @@ connection.connect(function(err) {
 })
 
 function userPrompt() {
-    function validateInputId(input) {
-        if (isNaN(input) || input>12 || input<1) {
-            return 'Please pick a valid ID'
-        } else {
-            return true
-        };
-    };
-    function validateInputQuantity(input2) {
-        if (isNaN(input2)) {
+    // function validateInputId(input) {
+    //     if (isNaN(input) || input>12 || input<1) {
+    //         return 'Please pick a valid ID'
+    //     } else {
+    //         return true
+    //     };
+    // };
+    function validateInputQuantity(input) {
+        if (isNaN(input)) {
             return 'Please input a number'
         } else {
             return true
@@ -44,7 +44,7 @@ function userPrompt() {
         {
             type: 'input',
             message: 'Welcome to Bamazon! What item ID would you like to buy?',
-            validate: validateInputId,
+            validate: validateInputQuantity,
             name: 'inputId'
         },
         {
