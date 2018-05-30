@@ -27,16 +27,18 @@ connection.connect(function(err) {
             connection.query('Select * from departments', function(err,res){
                 if (err) throw err;
                 res.forEach(function(ele) {
-                    //NEED TO SUM & STORE PRODUCT SALES
                     var sales;
+                    var overhead = ele.over_head_costs;
                     connection.query(`SELECT SUM(product_sales) FROM products WHERE department_name = '${ele.department_name}'`, function(err, res) {
                         sales = res[0]['SUM(product_sales)'];
-                        displayTable.push([ele.department_id, ele.department_name, ele.over_head_costs, sales]);
+                        var profit = sales - parseInt(overhead)
+                        displayTable.push([ele.department_id, ele.department_name, ele.over_head_costs, sales, profit]);
+                        console.log(displayTable.toString());
                     })
-                    //NEED TO CALC & STORE TOTAL PROFIT
                 })
-                console.log(displayTable.toString());
+
                 connection.end();
+
             })
         }
     })
