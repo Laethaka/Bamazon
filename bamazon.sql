@@ -28,5 +28,20 @@ use bamazon;
 --     ('American Psycho', 'fiction', 3.82, 100),
 --     ('Titus Groan', 'fiction', 3.91, 95);
 
-delete from products where department_name="fictio";
+-- create table departments (
+--     department_id int(11) not null auto_increment,
+--     department_name varchar(30) not null,
+--     over_head_costs float(11, 2) not null,
+--     primary key (department_id)
+-- );
+
+-- insert into departments (department_name, over_head_costs)
+-- values
+--     ('nonfiction', 1000),
+--     ('fiction', 1500),
+--     ('poetry', 500),
+--     ('play', 450);
+
+-- select * from departments;
+
 select * from products;

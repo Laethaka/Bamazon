@@ -64,7 +64,20 @@ function updateProduct(id, quantity) {
         if (err) throw err;
         if (res[0].stock_quantity >= quantity) {
             console.log(`Valid order confirmed! Your total is $${(quantity * res[0].price).toFixed(2)} for ${quantity} copies of ${res[0].product_name}`)
-            connection.query(`update products set stock_quantity = '${res[0].stock_quantity - quantity}' where item_id = '${id}'`)
+            // connection.query(`update products set stock_quantity = '${res[0].stock_quantity - quantity}' where item_id = '${id}'`)
+            // connection.query(`update products set product_sales = '${res[0].product_sales.toFixed(2) + (quantity * res[0].price).toFixed(2)}' where item_id = '${id}'`)
+            connection.query('update products set ? where ?',
+            [
+                {
+                    stock_quantity: res[0].stock_quantity - quantity,
+                    product_sales: res[0].product_sales + (quantity * res[0].price)
+                },
+                {
+                    item_id: id
+                }
+            ], function (err,res) {
+                if (err) throw err;
+            })
         } else {
             console.log('Invalid order! Please pick a smaller quantity.')
         }
